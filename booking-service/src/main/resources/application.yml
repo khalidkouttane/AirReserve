@@ -1,0 +1,42 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: booking-service
+  datasource:
+    url: jdbc:h2:mem:bookingdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+
+# 🔁 Indique où se trouve passenger-service
+passenger:
+  service:
+    url: http://localhost:8083
+
+# Pour Eureka si tu l’utilises
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+# Pour les logs Feign (si tu veux passer à Feign ensuite)
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: full
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
